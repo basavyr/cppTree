@@ -36,7 +36,7 @@ void initmatrix(char *matrix, int nrows, int ncols)
     {
         for (int j = 0; j < ncols; ++j)
         {
-            *((matrix + i * nrows) + j) = 'o';
+            *((matrix + i * nrows) + j) = ' ';
         }
     }
 }
@@ -48,7 +48,7 @@ void showTree(char *tree, int nrows, int ncols)
         for (int j = 0; j < ncols; ++j)
         {
             // init(&(*((tree + i * nrows) + j)));
-            std::cout << *((tree + i * nrows) + j) << " ";
+            std::cout << *((tree + i * ncols) + j) << " ";
         }
         std::cout << "\n";
     }
@@ -65,7 +65,7 @@ void drawTree(char *tree, int nrows, int ncols)
         for (int index = left; index < j; ++index)
         {
             int matIndex = i * ncols + index;
-            std::cout << i << " " << index << "\n";
+            // std::cout << i << " " << index << "\n";
             init(tree + matIndex);
             // *(tree + matIndex) = 'x';
         }
