@@ -3,7 +3,7 @@
 #include <ctime>
 #include <string>
 #include <cstdlib>
-
+#include <vector>
 void newLine()
 {
     //show a line
@@ -19,7 +19,7 @@ void showDate()
 
 void showUser(const std::string &name)
 {
-    std::cout << name << "\n";
+    std::cout << name;
     std::cout << " wishes you a happy holiday :)"
               << "\n";
 }
@@ -36,7 +36,7 @@ void initmatrix(char *matrix, int nrows, int ncols)
     {
         for (int j = 0; j < ncols; ++j)
         {
-            *((matrix + i * nrows) + j) = ' ';
+            *((matrix + i * ncols) + j) = ' ';
         }
     }
 }
@@ -48,7 +48,8 @@ void showTree(char *tree, int nrows, int ncols)
         for (int j = 0; j < ncols; ++j)
         {
             // init(&(*((tree + i * nrows) + j)));
-            std::cout << *((tree + i * ncols) + j) << " ";
+            std::cout << *((tree + i * ncols) + j);
+            ;
         }
         std::cout << "\n";
     }
@@ -75,16 +76,33 @@ void drawTree(char *tree, int nrows, int ncols)
     }
 }
 
+void drawTrunk(int ncols)
+{
+    int middle = (int)ncols / 2;
+    int left = middle - 1;
+    int right = middle + 1;
+    std::vector<char> trunk(ncols, ' ');
+    trunk.at(left) = '*';
+    trunk.at(middle) = '*';
+    trunk.at(right) = '*';
+    for (auto &&n : trunk)
+        std::cout << n;
+    newLine();
+}
+
 int main()
 {
     int nRows, nCols;
-    nRows = 3;
+    std::string name = "Robert";
+    nRows = 9;
     nCols = nRows * 2 - 1;
     char tree[nRows][nCols];
-    // showTree(*tree, nRows, nCols);
     initmatrix(*tree, nRows, nCols);
     drawTree(*tree, nRows, nCols);
-    // newLine();
     showTree(*tree, nRows, nCols);
+    drawTrunk(nCols);
+    drawTrunk(nCols);
+    showUser(name);
+    showDate();
     return 0;
 }
