@@ -90,18 +90,66 @@ void drawTrunk(int ncols)
     newLine();
 }
 
+void drawGiftedTrunk(int ncols)
+{
+    std::string star = "🎁";
+    int middle = (int)ncols / 2;
+    int left = middle - 1;
+    int right = middle + 1;
+    std::vector<std::string> trunk(ncols, " ");
+    trunk.at(left) = "*";
+    trunk.at(middle) = "*";
+    trunk.at(right) = "*";
+    trunk.at(middle + 2) = star;
+    trunk.at(middle + 3) = star;
+    trunk.at(middle + 4) = star;
+    for (auto &&n : trunk)
+        std::cout << n;
+    newLine();
+}
+
+void drawStar(int ncols)
+{
+    std::string star = "  🌟";
+    int middle = (int)ncols / 2;
+    int left = middle - 1;
+    int right = middle + 1;
+    std::vector<std::string> trunk(ncols, " ");
+    trunk.at(middle - 2) = star;
+    for (auto &&n : trunk)
+        std::cout << n;
+    newLine();
+}
+
+void drawGift(int ncols)
+{
+    std::string star = "🎁 ";
+    int middle = (int)ncols / 2;
+    int left = middle - 1;
+    int right = middle + 1;
+    std::vector<std::string> trunk(ncols, " ");
+    trunk.at(middle) = star;
+    for (auto &&n : trunk)
+        std::cout << n;
+    newLine();
+}
+
 int main()
 {
     int nRows, nCols;
+    std::string star = "🌟";
     std::string name = "Robert";
-    nRows = 9;
+    nRows = 10;
     nCols = nRows * 2 - 1;
     char tree[nRows][nCols];
     initmatrix(*tree, nRows, nCols);
     drawTree(*tree, nRows, nCols);
+    drawStar(nCols);
     showTree(*tree, nRows, nCols);
+    // drawTrunk(nCols);
     drawTrunk(nCols);
-    drawTrunk(nCols);
+    // drawGiftedTrunk(nCols);
+    drawGiftedTrunk(nCols);
     showUser(name);
     showDate();
     return 0;
